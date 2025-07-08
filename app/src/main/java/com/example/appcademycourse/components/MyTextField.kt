@@ -3,6 +3,7 @@ package com.example.appcademycourse.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -16,7 +17,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun MyTextFieldParent(modifier: Modifier = Modifier) {
     var user by rememberSaveable { mutableStateOf("") }
@@ -25,6 +26,7 @@ fun MyTextFieldParent(modifier: Modifier = Modifier) {
         MySecondTextField(value = user) { user = it }
         MyAdvanecTextField(value = user) { user = it }
         MyPasswordTextField(value = user) { user = it }
+        MyOutlinedTextField(value = user) { user = it }
     }
 }
 
@@ -71,4 +73,13 @@ fun MyPasswordTextField(value: String, onValueChange: (String) -> Unit) {
             Text(text = if(passwordHidden) "Show" else "Hide", modifier = Modifier.clickable{passwordHidden = !passwordHidden})
         }
         )
+}
+
+@Composable
+fun MyOutlinedTextField(value: String, onValueChange: (String) -> Unit) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = { onValueChange(it) },
+        label = { Text("Developer") }
+    )
 }
